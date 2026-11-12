@@ -1,0 +1,39 @@
+﻿<Page x:Class="CarServiceApp.Pages.AppointmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarServiceApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AppointmentPage">
+    <StackPanel>
+        <Label Content="Приёмы" FontSize="22" FontWeight="Bold"/>
+        <ScrollViewer Height="300" Width="auto">
+            <ItemsControl ItemsSource="{Binding}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="10" BorderBrush="Black" Width="200" Height="100" BorderThickness="1" Padding="5" Margin="5">
+                            <StackPanel MouseRightButtonDown="StackPanel_MouseRightButtonDown">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Car.Marka}" FontWeight="Bold" Margin="5"/>
+                                    <TextBlock Text="{Binding Car.Model}" Margin="5" FontWeight="Bold"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Service.Name}" Margin="5"/>
+                                <TextBlock Text="{Binding Master}" Margin="5"/>
+                            </StackPanel>
+
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+    </StackPanel>
+</Page>
