@@ -1,5 +1,6 @@
 ﻿using Car_Service;
 using Car_Service.Models;
+using CarServiceApp.Windows;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace CarServiceApp.Pages
     {
         CarServiceContext db = new CarServiceContext();
         ObservableCollection<Appointment> ap = new ObservableCollection<Appointment>();
+        Appointment sel = new Appointment();
         public AppointmentPage()
         {
             InitializeComponent();
@@ -35,21 +37,43 @@ namespace CarServiceApp.Pages
             DataContext = ap;
         }
 
-        private void StackPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            var s = sender is StackPanel;
-            MessageBoxResult result = MessageBox.Show(
-            "Ты точно хочешь удалить это?",
-            "Да или нет?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
-            
+            Appointment app = new Appointment();
+            AddAppointmentWindow w = new AddAppointmentWindow();
 
-            if (result == MessageBoxResult.Yes)
+            //w.DataContext = null;
+            w.ShowDialog();
+            if(w.DialogResult == true)
             {
-                
+                ap.Add(app);
                 db.SaveChanges();
             }
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            if(sel != null)
+            {
+
+                if(MessageBox.Show("Точно хотите удалить?",))
+                ap.Remove(sel);
+                db.SaveChanges();
+            }
+        }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as StackPanel).DataContext is Appointment s)
+            {
+                
+                sel = s;
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

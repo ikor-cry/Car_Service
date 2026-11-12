@@ -1,0 +1,44 @@
+﻿<Window x:Class="CarServiceApp.Windows.AddAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarServiceApp.Windows"
+        mc:Ignorable="d"
+        Title="AddAppointmentWindow" Height="250" Width="400">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="IsTextSearchEnabled" Value="True"/>
+            <Setter Property="IsEditable" Value="True"/>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <Label Content="Окно добавления" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0" Height="auto" Width="auto"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Марка:"/>
+            <ComboBox ItemsSource="{Binding Car}"
+                      DisplayMemberPath="Marka"
+                      SelectedValue="Car"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Услуга:"/>
+            <ComboBox ItemsSource="{Binding Service}"
+                      DisplayMemberPath="Name"
+                      SelectedValue="ServiceId"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Мастер:"/>
+            <ComboBox ItemsSource="{Binding Master}"/>
+        </StackPanel>
+        <Button Content="Сохранить" Margin="10" Click="Button_Click"/>
+    </StackPanel>
+</Window>

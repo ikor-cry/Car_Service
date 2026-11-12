@@ -7,6 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AppointmentPage">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Page.Resources>
+    
     <StackPanel>
         <Label Content="Приёмы" FontSize="22" FontWeight="Bold"/>
         <ScrollViewer Height="300" Width="auto">
@@ -20,10 +28,9 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border CornerRadius="10" BorderBrush="Black" Width="200" Height="100" BorderThickness="1" Padding="5" Margin="5">
-                            <StackPanel MouseRightButtonDown="StackPanel_MouseRightButtonDown">
+                            <StackPanel MouseDown="StackPanel_MouseDown">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Car.Marka}" FontWeight="Bold" Margin="5"/>
-                                    <TextBlock Text="{Binding Car.Model}" Margin="5" FontWeight="Bold"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding Service.Name}" Margin="5"/>
                                 <TextBlock Text="{Binding Master}" Margin="5"/>
@@ -34,6 +41,10 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Добавить" Click="Add_Click"/>
+            <Button Content="Удалить" Click="Del_Click"/>
+            <Button Content="Сохранить изменения" Click="Edit_Click"/>
+        </StackPanel>
     </StackPanel>
 </Page>
